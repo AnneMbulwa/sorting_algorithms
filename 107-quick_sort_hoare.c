@@ -41,7 +41,7 @@ int hoarse_partition(int * array, int low, int high, size_t size)
 			print_array(array, size);
 		}
 	}
-	return (a);
+	return (z);
 }
 
 /**
@@ -56,11 +56,11 @@ void hoarseSort(int *array, int low, int high, size_t size)
 {
 	int pi;
 
-	if (high - low > 0)
+	if (low < high)
 	{
 		pi = hoarse_partition(array, low, high, size);
-		hoarseSort(array, low, pi - 1, size);
-		hoarseSort(array, pi, high, size);
+		hoarseSort(array, low, pi, size);
+		hoarseSort(array, pi + 1, high, size);
 	}
 }
 
@@ -75,5 +75,5 @@ void quick_sort_hoare(int *array, size_t size)
 {
 	if (array == NULL || size < 2)
 		return;
-	hoarseSort(array, size, 0, size - 1);
+	hoarseSort(array, 0, size - 1, size);
 }
