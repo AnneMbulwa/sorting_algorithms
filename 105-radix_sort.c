@@ -23,17 +23,17 @@ int get_max(int *array, int size)
  *@size: size
  *@exp: significant digit
  *@buf: buffer
- *
+ *Return: void
  */
-void radix_countingSort(int *array, size_t size, size_t exp, int *buf)
+void radix_countingSort(int *array, size_t size, int exp, int *buf)
 {
 	size_t a;
-	int count[10] = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+	int count[10] = {0};
 
 	for (a = 0; a < size; a++)
 		count[(array[a] / exp) % 10] += 1;
-	for (a = 0; a < 10; a++)
-		count[a] = count[a - 1];
+	for (a = 1; a < 10; a++)
+		count[a] += count[a - 1];
 	for (a = size - 1; (int)a >= 0; a--)
 	{
 		buf[count[(array[a] / exp) % 10] - 1] = array[a];
