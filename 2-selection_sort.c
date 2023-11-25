@@ -10,22 +10,26 @@
 void selection_sort(int *array, size_t size)
 {
 	size_t a, b;
-	int m_index, tmp;
+	int index = 0, m_index, temp;
 
 	if (array == NULL || size < 2)
 		return;
-	for (a = 0; a < size; a++)
+	for (a = 0; a < size - 1; a++)
 	{
-		m_index = a;
+		m_index = array[a];
 		for (b = a + 1; b < size; b++)
-			if (array[b] < array[m_index])
-				m_index = b;
+			if (array[b] < m_index)
+			{
+				m_index = array[b];
+				index = b;
+			}
+
 
 		if (m_index != array[a])
 		{
-			tmp = array[a];
-			array[a] = array[m_index];
-			array[m_index] = tmp;
+			temp = array[a];
+			array[a] = array[index];
+			array[index] = temp;
 			print_array(array, size);
 		}
 	}
