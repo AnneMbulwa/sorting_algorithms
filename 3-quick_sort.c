@@ -7,7 +7,7 @@
  *@q: second element
  *@size: size of array
  */
-void swap(int * array, int *p, int *q, size_t size)
+void swap(int *array, int *p, int *q, size_t size)
 {
 	int temp;
 
@@ -25,25 +25,25 @@ void swap(int * array, int *p, int *q, size_t size)
  *@size: size of array
  *Return: pivot position
  */
-int partition (int *array, int low, int high, size_t size)
+int partition(int *array, int low, int high, size_t size)
 {
 	int pivot = array[high];
-	int a = (low - 1);
+	int a = low;
 	int b;
 
-	for (b = low; b <= high; b++)
+	for (b = low; b < high; b++)
 	{
 		if (array[b] < pivot)
+		{
 			if (a != b)
-			{
 				swap(array, &array[a], &array[b], size);
-				a++;
-			}
+			a++;
+		}
 	}
 	if (a != high)
-		swap(array, &array[a + 1], &array[high], size);
+		swap(array, &array[a], &array[high], size);
 
-	return (a + 1);
+	return (a);
 }
 
 /**
@@ -58,10 +58,12 @@ void quickSort(int *array, int low, int high, size_t size)
 {
 	int pi = 0;
 
-	if (low <= high)
+	if (low < high)
+	{
 		pi = partition(array, low, high, size);
-	quickSort(array, low, pi - 1, size);
-	quickSort(array, pi + 1, high, size);
+		quickSort(array, low, pi - 1, size);
+		quickSort(array, pi + 1, high, size);
+	}
 }
 
 /**
