@@ -13,27 +13,27 @@ void swap(int *p, int *q)
 }
 
 /**
- *hoarse_partition - divides the array into portions
+ *hoare_partition - divides the array into portions
  *@array: array
  *@low: lowest value element
  *@high: highest value element
  *@size: size of array
  *Return: final index of pivot
  */
-int hoarse_partition(int * array, int low, int high, size_t size)
+int hoare_partition(int *array, int low, int high, size_t size)
 {
-	int pivot, a ,z;
+	int pivot, a, z;
 
 	pivot = array[high];
 	for (a = low - 1, z = high + 1; a < z;)
 	{
-		do{
+		do {
 			a++;
-		}while (array[a] < pivot);
+		} while (array[a] < pivot);
 
-		do{
+		do {
 			z--;
-		}while (array[z] > pivot);
+		} while (array[z] > pivot);
 
 		if (a < z)
 		{
@@ -45,27 +45,27 @@ int hoarse_partition(int * array, int low, int high, size_t size)
 }
 
 /**
- *hoarseSort - sorts for the recursion
+ *hoareSort - sorts for the recursion
  *@array: array
  *@low: lowest element
  *@high: highest element
  *@size: size of array
  *Return: void
  */
-void hoarseSort(int *array, int low, int high, size_t size)
+void hoareSort(int *array, int low, int high, size_t size)
 {
 	int pi;
 
 	if (low < high)
 	{
-		pi = hoarse_partition(array, low, high, size);
-		hoarseSort(array, low, pi, size);
-		hoarseSort(array, pi + 1, high, size);
+		pi = hoare_partition(array, low, high, size);
+		hoareSort(array, low, pi, size);
+		hoareSort(array, pi + 1, high, size);
 	}
 }
 
 /**
- *quick_sort_hoarse - sorts an array of integers in ascending order
+ *quick_sort_hoare - sorts an array of integers in ascending order
  *using the Quick sort algorithm
  *@array: array sort
  *@size: size of array
@@ -75,5 +75,5 @@ void quick_sort_hoare(int *array, size_t size)
 {
 	if (array == NULL || size < 2)
 		return;
-	hoarseSort(array, 0, size - 1, size);
+	hoareSort(array, 0, size - 1, size);
 }

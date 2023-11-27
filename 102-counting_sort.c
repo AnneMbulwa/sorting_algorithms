@@ -9,6 +9,7 @@
 int find_max(int *array, int size)
 {
 	int max, a;
+
 	for (max = array[0], a = 1; a < size; a++)
 	{
 		if (array[a] > max)
@@ -31,7 +32,6 @@ void counting_sort(int *array, size_t size)
 	if (array == NULL || size < 2)
 		return;
 	max = find_max(array, size);
-
 	countArray = malloc((max + 1) * sizeof(int));
 	if (countArray == NULL)
         	return;
